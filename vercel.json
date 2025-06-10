@@ -1,9 +1,5 @@
 {
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/about", "dest": "/About.html" },
-    { "src": "/contact", "dest": "/Contact.html" },
-    { "src": "/legal", "dest": "/Legal.html" },
-    { "src": "/(.*)", "status": 404, "dest": "/404.html" }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
