@@ -1,10 +1,30 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import InfrastructureVisualization from '@/components/3d/InfrastructureVisualization';
 
 const HeroSection = () => {
   const particleContainerRef = useRef<HTMLDivElement>(null);
+  const [currentState, setCurrentState] = useState<'normal' | 'flood' | 'drought' | 'emergency'>('normal');
+  const [sensorData] = useState({
+    rainfall: '0mm',
+    temp: '22°C',
+    soilMoisture: '45%',
+    waterFlow: '0L/s'
+  });
+
+  // Cycle through states every 8 seconds for demo purposes
+  useEffect(() => {
+    const states: Array<'normal' | 'flood' | 'drought' | 'emergency'> = ['normal', 'flood', 'drought', 'emergency'];
+    let currentIndex = 0;
+
+    const interval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % states.length;
+      setCurrentState(states[currentIndex] as 'normal' | 'flood' | 'drought' | 'emergency');
+    }, 8000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const createParticle = () => {
@@ -97,7 +117,11 @@ const HeroSection = () => {
           {/* Right Column - 3D Visualization */}
           <div className="relative h-80 sm:h-96 lg:h-[500px] mt-8 lg:mt-0 animate-fade-in animation-delay-300">
             <div className="absolute inset-0 glassmorphism rounded-2xl overflow-hidden animate-pulse-glow">
-              <InfrastructureVisualization />
+              <InfrastructureVisualization 
+                currentState={currentState}
+                sensorData={sensorData}
+                isEmergencyStopActive={false}
+              />
             </div>
           </div>
         </div>
