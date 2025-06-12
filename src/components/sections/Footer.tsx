@@ -11,7 +11,7 @@ const Footer = () => {
   const socialLinks = [
     { icon: <Facebook className="w-5 h-5" />, href: "https://www.facebook.com/aquamorph.2025", label: "Facebook" },
     { icon: <Youtube className="w-5 h-5" />, href: "https://www.youtube.com/@aquamorph.2025", label: "YouTube" },
-    { icon: <Linkedin className="w-5 h-5" />, href: "https://www.linkedin.com/in/aquamorph/", label: "LinkedIn" },
+    { icon: <Linkedin className="w-5 h-5" />, href: "https://www.linkedin.com/company/aquamorph/", label: "LinkedIn" },
     { icon: <X className="w-5 h-5" />, href: "https://x.com/aquamorph2025", label: "X (Twitter)" }
   ];
 
